@@ -15,11 +15,11 @@ class App extends Component {
   }
 
   // Use ES6 syntax so this refers to the class
-  switchNameHandler = () => {
+  switchNameHandler = (newName) => {
     // DONT DO THIS -> this.state.people[1].name = 'Patri';
     this.setState({
       people: [
-        {name: 'Vaco', age: '5'},
+        {name: newName, age: '5'},
         {name: 'Axl', age: '3' }
       ]
     });
@@ -30,9 +30,15 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
-        <button onClick={this.switchNameHandler}>Switch Name</button>
-        <Person name={this.state.people[0].name} age={this.state.people[0].age}/>
-        <Person name={this.state.people[1].name} age={this.state.people[1].age}>Hobbie is to: {this.state.hobbies[1]}</Person>
+        <button onClick={() => this.switchNameHandler( 'Vaco')}>Switch Name</button>
+        <Person
+           name={this.state.people[0].name}
+           myCustomClickEvent={this.switchNameHandler.bind(this, 'Betun')}
+           age={this.state.people[0].age}/>
+        <Person
+           name={this.state.people[1].name}
+           myCustomClickEvent={this.switchNameHandler.bind(this, 'Pollita')}
+           age={this.state.people[1].age}>Hobbie is to: {this.state.hobbies[1]}</Person>
       </div>
     );
   }
