@@ -25,6 +25,15 @@ class App extends Component {
     });
   }
 
+  nameChangedHandler = (event) => {
+    this.setState({
+      people: [
+        {name: 'Vaco', age: '5'},
+        {name: event.target.value, age: '3' }
+      ]
+    });
+  }
+
   render() {
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi, I\'m a React App!' ));
     return (
@@ -38,6 +47,7 @@ class App extends Component {
         <Person
            name={this.state.people[1].name}
            myCustomClickEvent={this.switchNameHandler.bind(this, 'Pollita')}
+           inputChanged={this.nameChangedHandler}
            age={this.state.people[1].age}>Hobbie is to: {this.state.hobbies[1]}</Person>
       </div>
     );
