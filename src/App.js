@@ -8,8 +8,8 @@ class App extends Component {
   // You can of course pass the state  down to functional components, but these then can't directly edit it.
   state =  {
     people: [
-      {name: 'Carlos', age: '32'},
-      {name: 'Vivi', age: '34' }
+      {id: 1, name: 'Carlos', age: '32'},
+      {id: 2, name: 'Vivi', age: '34' }
     ],
     hobbies: ['Run', 'Read'],
     showPeople: false
@@ -26,13 +26,20 @@ class App extends Component {
     });
   }
 
-  nameChangedHandler = (event) => {
-    this.setState({
-      people: [
-        {name: 'Vaco', age: '5'},
-        {name: event.target.value, age: '3' }
-      ]
+  nameChangedHandler = (event, personId) => {
+    const personIndex = this.state.people.findIndex(p => {
+      return p.id === personId;
     });
+
+    const person = {...this.state.people[personIndex]};
+    // alternative to above
+    // const person = Object.assign({}, this.state.people[personIndex]);
+    person.name = event.target.value;
+
+    const people = [...this.state.people];
+    people[personIndex] = person;
+
+    this.setState({people: people});
   }
 
 
@@ -68,8 +75,10 @@ class App extends Component {
           <Person
              name={person.name}
              myCustomClickEvent={this.deletePersonHandler.bind(this, index)}
-             inputChanged={this.nameChangedHandler}
-             age={person.age} />
+             inputChanged={(event) => this.nameChangedHandler(event, person.id)}
+             age={person.age}
+             key={person.id}
+             />
             );})}
         </div>
       );
