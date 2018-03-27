@@ -11,7 +11,8 @@ class App extends Component {
       {name: 'Carlos', age: '32'},
       {name: 'Vivi', age: '34' }
     ],
-    hobbies: ['Run', 'Read']
+    hobbies: ['Run', 'Read'],
+    showPeople: false
   }
 
   // Use ES6 syntax so this refers to the class
@@ -34,12 +35,32 @@ class App extends Component {
     });
   }
 
+
+  togglePeopleList = () => {
+    this.setState({showPeople: !this.state.showPeople});
+  }
+
   render() {
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    };
+
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi, I\'m a React App!' ));
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
-        <button onClick={() => this.switchNameHandler( 'Vaco')}>Switch Name</button>
+        <button
+           style={style}
+           onClick={() => this.switchNameHandler( 'Vaco')}>Switch Name</button>
+        <button
+           style={style}
+           onClick={this.togglePeopleList}>Toggle People</button>
+        { this.state.showPeople ?
+          <div>
         <Person
            name={this.state.people[0].name}
            myCustomClickEvent={this.switchNameHandler.bind(this, 'Betun')}
@@ -48,7 +69,10 @@ class App extends Component {
            name={this.state.people[1].name}
            myCustomClickEvent={this.switchNameHandler.bind(this, 'Pollita')}
            inputChanged={this.nameChangedHandler}
-           age={this.state.people[1].age}>Hobbie is to: {this.state.hobbies[1]}</Person>
+             age={this.state.people[1].age}>Hobbie is to: {this.state.hobbies[1]}</Person>
+            </div>
+            : null
+          }
       </div>
     );
   }
