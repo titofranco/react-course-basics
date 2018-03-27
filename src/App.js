@@ -49,6 +49,24 @@ class App extends Component {
       cursor: 'pointer'
     };
 
+    let people = null;
+
+    if (this.state.showPeople) {
+      people = (
+        <div>
+          <Person
+             name={this.state.people[0].name}
+             myCustomClickEvent={this.switchNameHandler.bind(this, 'Betun')}
+             age={this.state.people[0].age}/>
+          <Person
+             name={this.state.people[1].name}
+             myCustomClickEvent={this.switchNameHandler.bind(this, 'Pollita')}
+             inputChanged={this.nameChangedHandler}
+             age={this.state.people[1].age}>Hobbie is to: {this.state.hobbies[1]}</Person>
+        </div>
+      );
+    }
+
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi, I\'m a React App!' ));
     return (
       <div className="App">
@@ -59,20 +77,7 @@ class App extends Component {
         <button
            style={style}
            onClick={this.togglePeopleList}>Toggle People</button>
-        { this.state.showPeople ?
-          <div>
-        <Person
-           name={this.state.people[0].name}
-           myCustomClickEvent={this.switchNameHandler.bind(this, 'Betun')}
-           age={this.state.people[0].age}/>
-        <Person
-           name={this.state.people[1].name}
-           myCustomClickEvent={this.switchNameHandler.bind(this, 'Pollita')}
-           inputChanged={this.nameChangedHandler}
-             age={this.state.people[1].age}>Hobbie is to: {this.state.hobbies[1]}</Person>
-            </div>
-            : null
-          }
+        { people }
       </div>
     );
   }
