@@ -40,6 +40,15 @@ class App extends Component {
     this.setState({showPeople: !this.state.showPeople});
   }
 
+  deletePersonHandler = (index) => {
+    // Create a copy, remember arrays and objects holds the reference, that's why I can use const
+    // const people = this.state.people.slice();
+    // Equivalent to above using the spread operator
+    const people = [...this.state.people];
+    people.splice(index, 1);
+    this.setState({people: people});
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -54,11 +63,11 @@ class App extends Component {
     if (this.state.showPeople) {
       people = (
         <div>
-          {this.state.people.map(person => {
+          {this.state.people.map((person, index) => {
             return(
           <Person
              name={person.name}
-             myCustomClickEvent={this.switchNameHandler.bind(this, 'Betun')}
+             myCustomClickEvent={this.deletePersonHandler.bind(this, index)}
              inputChanged={this.nameChangedHandler}
              age={person.age} />
             );})}
