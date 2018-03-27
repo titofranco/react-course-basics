@@ -54,15 +54,14 @@ class App extends Component {
     if (this.state.showPeople) {
       people = (
         <div>
+          {this.state.people.map(person => {
+            return(
           <Person
-             name={this.state.people[0].name}
+             name={person.name}
              myCustomClickEvent={this.switchNameHandler.bind(this, 'Betun')}
-             age={this.state.people[0].age}/>
-          <Person
-             name={this.state.people[1].name}
-             myCustomClickEvent={this.switchNameHandler.bind(this, 'Pollita')}
              inputChanged={this.nameChangedHandler}
-             age={this.state.people[1].age}>Hobbie is to: {this.state.hobbies[1]}</Person>
+             age={person.age} />
+            );})}
         </div>
       );
     }
