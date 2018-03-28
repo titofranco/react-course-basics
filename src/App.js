@@ -58,7 +58,8 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
@@ -66,6 +67,13 @@ class App extends Component {
     };
 
     let people = null;
+    const classes = [];
+
+    if (this.state.people.length < 2 ) {
+      classes.push('red');
+    } else {
+      classes.push('bold');
+    }
 
     if (this.state.showPeople) {
       people = (
@@ -82,12 +90,14 @@ class App extends Component {
             );})}
         </div>
       );
+      style.backgroundColor = 'blue';
     }
 
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi, I\'m a React App!' ));
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
+        <p className={classes}>YAY</p>
         <button
            style={style}
            onClick={() => this.switchNameHandler( 'Vaco')}>Switch Name</button>
