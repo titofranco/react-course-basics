@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import styles from './App.css';
 import Person from './Person/Person.js';
 
 class App extends Component {
@@ -70,9 +70,9 @@ class App extends Component {
     const classes = [];
 
     if (this.state.people.length < 2 ) {
-      classes.push('red');
+      classes.push(styles.red);
     } else {
-      classes.push('bold');
+      classes.push(styles.bold);
     }
 
     if (this.state.showPeople) {
@@ -95,7 +95,7 @@ class App extends Component {
 
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi, I\'m a React App!' ));
     return (
-      <div className="App">
+      <div className={styles.App}>
         <h1>Hi, I'm a React App</h1>
         <p className={classes}>YAY</p>
         <button
