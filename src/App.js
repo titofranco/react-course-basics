@@ -57,17 +57,9 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    };
-
     let people = null;
     const classes = [];
+    let buttonClass = '';
 
     if (this.state.people.length < 2 ) {
       classes.push(styles.red);
@@ -90,7 +82,7 @@ class App extends Component {
             );})}
         </div>
       );
-      style.backgroundColor = 'blue';
+      buttonClass = styles.Red;
     }
 
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi, I\'m a React App!' ));
@@ -98,8 +90,7 @@ class App extends Component {
       <div className={styles.App}>
         <h1>Hi, I'm a React App</h1>
         <p className={classes}>YAY</p>
-        <button
-           style={style}
+        <button className={buttonClass}
            onClick={this.togglePeopleList}>Toggle People</button>
         { people }
       </div>
