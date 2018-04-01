@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './App.css';
 import Person from './Person/Person.js';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary.js';
 
 class App extends Component {
   // state: Only available if you extend from component
@@ -72,13 +73,14 @@ class App extends Component {
         <div>
           {this.state.people.map((person, index) => {
             return(
-          <Person
-             name={person.name}
-             myCustomClickEvent={this.deletePersonHandler.bind(this, index)}
-             inputChanged={(event) => this.nameChangedHandler(event, person.id)}
-             age={person.age}
-             key={person.id}
-             />
+            <ErrorBoundary key={person.id}>
+              <Person
+                 name={person.name}
+                 myCustomClickEvent={this.deletePersonHandler.bind(this, index)}
+                 inputChanged={(event) => this.nameChangedHandler(event, person.id)}
+                age={person.age}
+                />
+              </ErrorBoundary>
             );})}
         </div>
       );
