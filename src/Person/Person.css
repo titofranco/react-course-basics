@@ -10,3 +10,10 @@
     border: 1px rgb(240,240,240);
   }
 }
+
+@media (min-width: 500px) {
+  .Person {
+    width: 450px;
+    background-color: rgb(240, 240, 240);
+  }
+}
