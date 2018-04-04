@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './App.css';
 import People from '../components/People/People';
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary.js';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
   // state: Only available if you extend from component
@@ -59,34 +59,21 @@ class App extends Component {
 
   render() {
     let people = null;
-    const classes = [];
-    let buttonClass = '';
-
-    if (this.state.people.length < 2 ) {
-      classes.push(styles.red);
-    } else {
-      classes.push(styles.bold);
-    }
 
     if (this.state.showPeople) {
-      people = (
-        <div>
-          <People people={this.state.people}
+      people = <People people={this.state.people}
                   deletePersonHandler={this.deletePersonHandler}
                   nameChangedHandler={this.nameChangedHandler}
-                  />
-        </div>
-      );
-      buttonClass = styles.Red;
+        />;
     }
 
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi, I\'m a React App!' ));
     return (
       <div className={styles.App}>
-        <h1>Hi, I'm a React App</h1>
-        <p className={classes}>YAY</p>
-        <button className={buttonClass}
-           onClick={this.togglePeopleList}>Toggle People</button>
+        <Cockpit
+           showPeople={this.state.showPeople}
+           people={this.state.people}
+           togglePeopleList={this.togglePeopleList} />
         { people }
       </div>
     );
