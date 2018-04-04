@@ -4,16 +4,20 @@ import People from '../components/People/People';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
-  // state: Only available if you extend from component
-  // Should not be changed, if you change it, it will rerender the DOM
-  // You can of course pass the state  down to functional components, but these then can't directly edit it.
-  state =  {
-    people: [
-      {id: 1, name: 'Carlos', age: '32'},
-      {id: 2, name: 'Vivi', age: '34' }
-    ],
-    hobbies: ['Run', 'Read'],
-    showPeople: false
+
+  constructor(props) {
+    super(props); // It has to be called at the beginning
+    // state: Only available if you extend from component
+    // Should not be changed, if you change it, it will rerender the DOM
+    // You can of course pass the state  down to functional components, but these then can't directly edit it.
+    this.state =  {
+      people: [
+        {id: 1, name: 'Carlos', age: '32'},
+        {id: 2, name: 'Vivi', age: '34' }
+      ],
+      hobbies: ['Run', 'Read'],
+      showPeople: false
+    };
   }
 
   // Use ES6 syntax so this refers to the class
