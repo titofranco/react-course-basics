@@ -18,6 +18,15 @@ class App extends Component {
       hobbies: ['Run', 'Read'],
       showPeople: false
     };
+    console.log('[In App.js] #constructor ', props);
+  }
+
+  componentWillMount() {
+    console.log('[In App.js] #componentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('[In App.js] #componentDidMount');
   }
 
   // Use ES6 syntax so this refers to the class
@@ -62,6 +71,8 @@ class App extends Component {
   }
 
   render() {
+    console.log('[In App.js] #render');
+
     let people = null;
 
     if (this.state.showPeople) {
