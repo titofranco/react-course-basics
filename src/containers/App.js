@@ -31,7 +31,10 @@ class App extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[In App.js] #shouldComponentUpdate ', nextProps, ' ', nextState);
-    return true; // THe update continues
+    // Avoid calling the following hooks if people don't change
+    // That improves the app performance
+    return nextState.people !== this.state.people ||
+      nextState.showPeople !== this.state.showPeople;
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -99,6 +102,7 @@ class App extends Component {
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi, I\'m a React App!' ));
     return (
       <div className={styles.App}>
+        <button onClick={() => this.setState({showPeople: true})}>Show all People(shouldComponentUpdate test)</button>
         <Cockpit
            appTitle={this.props.title}
            showPeople={this.state.showPeople}
