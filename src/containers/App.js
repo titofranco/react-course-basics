@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import styles from './App.css';
 import People from '../components/People/People';
 import Cockpit from '../components/Cockpit/Cockpit';
 
-class App extends Component {
+class App extends PureComponent {
 
   constructor(props) {
     super(props); // It has to be called at the beginning
@@ -29,13 +29,15 @@ class App extends Component {
     console.log('[In App.js] #componentDidMount');
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('[In App.js] #shouldComponentUpdate ', nextProps, ' ', nextState);
-    // Avoid calling the following hooks if people don't change
-    // That improves the app performance
-    return nextState.people !== this.state.people ||
-      nextState.showPeople !== this.state.showPeople;
-  }
+  // No need to check for property changes since I extend
+  // App from PureComponent
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log('[In App.js] #shouldComponentUpdate ', nextProps, ' ', nextState);
+  //   // Avoid calling the following hooks if people don't change
+  //   // That improves the app performance
+  //   return nextState.people !== this.state.people ||
+  //     nextState.showPeople !== this.state.showPeople;
+  // }
 
   componentWillUpdate(nextProps, nextState) {
     console.log('[In App.js] #componentWillUpdate ', nextProps, ' ', nextState);
