@@ -16,6 +16,24 @@ class People extends Component {
     console.log('[In People.js] #componentDidMount');
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('[In People.js] #componentWillReceiveProps ', nextProps);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[In People.js] #shouldComponentUpdate ', nextProps, ' ', nextState);
+    // return false // We stop the process
+    return true; // THe update continues
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('[In People.js] #componentWillUpdate ', nextProps, ' ', nextState);
+  }
+
+  componentDidUpdate() {
+    console.log('[In People.js] #componentDidUpdate');
+  }
+
   render() {
     console.log('[In People.js] #render');
     return(
