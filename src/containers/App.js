@@ -29,6 +29,20 @@ class App extends Component {
     console.log('[In App.js] #componentDidMount');
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[In App.js] #shouldComponentUpdate ', nextProps, ' ', nextState);
+    return true; // THe update continues
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('[In App.js] #componentWillUpdate ', nextProps, ' ', nextState);
+  }
+
+  componentDidUpdate() {
+    console.log('[In App.js] #componentDidUpdate');
+  }
+
+
   // Use ES6 syntax so this refers to the class
   switchNameHandler = (newName) => {
     // DONT DO THIS -> this.state.people[1].name = 'Patri';
