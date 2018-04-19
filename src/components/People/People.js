@@ -46,6 +46,7 @@ class People extends PureComponent {
         return <Person
           key={person.id}
           name={person.name}
+          position={index}
           myCustomClickEvent={this.props.deletePersonHandler.bind(this, index)}
           inputChanged={(event) => this.props.nameChangedHandler(event, person.id)}
           age={person.age} /> ;
