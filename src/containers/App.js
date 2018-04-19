@@ -13,8 +13,8 @@ class App extends PureComponent {
     // You can of course pass the state  down to functional components, but these then can't directly edit it.
     this.state =  {
       people: [
-        {id: 1, name: 'Carlos', age: '32'},
-        {id: 2, name: 'Vivi', age: '34' }
+        {id: 1, name: 'Carlos', age: 32},
+        {id: 2, name: 'Vivi', age: 34 }
       ],
       hobbies: ['Run', 'Read'],
       showPeople: false,
