@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import classes from './Person.css';
 import WithClass from '../../../hoc/WithClass';
 import PropTypes from 'prop-types';
+import { AuthContext } from  '../../../containers/App';
 
 class Person extends Component {
   constructor(props) {
@@ -28,7 +29,11 @@ class Person extends Component {
     console.log('[In Person.js] #render');
     return (
       <WithClass classes={classes.Person}>
-        <p onClick={this.props.myCustomClickEvent}>I'm a {this.props.name}! and I am { this.props.age } years old, click me! </p>
+        <AuthContext.Consumer>
+          {isAuth => isAuth ? <p>I'm authenticated</p> : null }
+        </AuthContext.Consumer>
+
+         <p onClick={this.props.myCustomClickEvent}>I'm a {this.props.name}! and I am { this.props.age } years old, click me! </p>
         <p>{this.props.children}</p>
         <input
            ref={(inpt) => { this.inputElement = inpt; }}
