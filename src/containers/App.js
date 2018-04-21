@@ -44,8 +44,19 @@ class App extends PureComponent {
   //     nextState.showPeople !== this.state.showPeople;
   // }
 
+  //Discourage to use this component because if you're not 100% certain
+  //of what you're doing, it can lead to unexpected behaviours, so, you better use
+  // getDerivedStateFromProps
   componentWillUpdate(nextProps, nextState) {
     console.log('[In App.js] #componentWillUpdate ', nextProps, ' ', nextState);
+  }
+
+  // Is executed whenever your props are updated
+  // It runs before the render method and it can't be used along with
+  // componentWillMount, componentWillUpdate because it will raise
+  // a warning
+  static getDerivedStateFromProps(nextProps, nextState) {
+    console.log('[In App.js] #getDerivedStateFromProps ', nextProps, ' ', nextState);
   }
 
   componentDidUpdate() {
@@ -131,6 +142,14 @@ class App extends PureComponent {
       </WithClass>
     );
   }
+
+  // Executed before the DOM is about to update
+  // Executed after render hook and before the componentDidUpdate
+  // Useful if you want to save the scrolling position of the user
+  getSnapshotBeforeUpdate() {
+    console.log('[In App.js] #getSnapshotBeforeUpdate');
+  }
+
 }
 
 export default App;
